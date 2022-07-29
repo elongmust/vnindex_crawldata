@@ -1,0 +1,15 @@
+{
+    "name": "boo/vnindex",
+    "autoload": {
+        "psr-4": {
+            "Boo\\Vnindex\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "elongmust",
+            "email": "105293034+elongmust@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
