@@ -123,4 +123,9 @@ class User extends BaseController
         session()->set($data);
         return true;
     }
+
+    public function view($slug){
+        useTemplate('profile_template');
+        return view('user/profile');
+    }
 }

@@ -45,6 +45,9 @@ $routes->match(['get', 'post'], 'crawl', 'Stocks::crawl');
 
 $routes->match(['get', 'post'], 'signup', 'User::signup');
 $routes->match(['get', 'post'], 'login', 'User::login');
+$routes->match(['get', 'post'], 'u/(:segment)', 'User::view/$1');
+$routes->match(['get', 'post'], 'search', 'Search::index');
+$routes->match(['get', 'post'], '404', 'Home::eror404');
 
 // $routes->get('stocks/exchange', 'Stocks::exchange');
 // $routes->get('stocks/add', 'Stocks::add');

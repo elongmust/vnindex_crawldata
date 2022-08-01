@@ -16,7 +16,10 @@ class Stocks extends BaseController
         $model = model(StocksModel::class);
         $all_stocks = $model->findAll();
        
-       
+        setBreadcrumb([
+            'stocks' => 'Stocks'
+        ]);
+        loadCss(['stocks/index.css']);
         return view('stocks/index', ['stocks' => $all_stocks]);
     }
 
@@ -58,12 +61,13 @@ class Stocks extends BaseController
 
         $model = model(ExchangeModel::class);
         $exchange = $model->getAllExchanges();
+        setTitle('Add new Stock');
+        setBreadcrumb([
+            'stocks' => 'Stocks',
+            'stocks/add' => 'Add new Stock'
+        ]);
 
         return view('stocks/add', ['exchange' => $exchange]);
-
-        return view('layout/header', ['title' => 'add new stocks'])
-            . view('stocks/add', ['exchange' => $exchange])
-            . view('layout/footer');
     }
 
     public function crawl()
@@ -105,6 +109,10 @@ class Stocks extends BaseController
             'stocks' => $stockDataModel->where('stock_name', $slug)->paginate(15),
             'pager' => $stockDataModel->pager,
         ];
+        setBreadcrumb([
+            'stocks' => 'Stocks',
+            '#' => $slug
+        ]);
         setTitle($stock['name'].':'.$stock['full_stock_name'] .'| Tin tức và Dữ Liệu');
         loadCss(['stocks/view.css']);
         loadJs(['stocks/view.js']);

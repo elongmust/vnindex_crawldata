@@ -1,0 +1,20 @@
+/* This is global css file and load for all pages */
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    list-style: none;
+    background-color: white !important;
+}
+
+a, a:hover {
+    color: #0a58ca;
+    text-decoration: none;
+}

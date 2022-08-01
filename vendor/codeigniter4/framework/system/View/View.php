@@ -219,6 +219,7 @@ class View implements RendererInterface
         unset($GLOBALS['sJs']);
         unset($GLOBALS['title']);
         unset($GLOBALS['meta']);
+        unset($GLOBALS['sBreadcrumb']);
         // $router = \Config\Services::router();
         // $_method = $router->methodName();
         // $_controller = $router->controllerName();

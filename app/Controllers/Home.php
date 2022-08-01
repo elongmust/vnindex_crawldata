@@ -20,6 +20,11 @@ class Home extends BaseController
         // $data['yield'] = 'welcome_message';
         // return view('default_template', $data);
         setTitle('Home Page');
-        return view('index');
+        return view('home/index');
+    }
+
+    public function eror404(){
+      useTemplate('blank_template');
+      return view('404');
     }
 }
