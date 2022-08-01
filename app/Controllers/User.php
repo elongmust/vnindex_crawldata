@@ -8,6 +8,35 @@ use App\Models\UserModel;
 class User extends BaseController
 {
 
+    public function test()
+    {
+
+        $data = [
+            'blog_title'   => 'My Blog Title',
+            'blog_heading' => 'My Blog Heading',
+            'blog_entries' => [
+                ['title' => 'Title 1', 'body' => 'Body 1'],
+                ['title' => 'Title 2', 'body' => 'Body 2'],
+                ['title' => 'Title 3', 'body' => 'Body 3'],
+                ['title' => 'Title 4', 'body' => 'Body 4'],
+                ['title' => 'Title 5', 'body' => 'Body 5'],
+            ],
+        ];
+
+        // echo viewTesting('sex');
+        // return $parser->setData($data)->render('blog_template');
+        // useTemplate('blank_template');
+        setTitle('User testing page');
+        setMeta([
+            'name="keywords" content="testing"',
+            'property="og:title" content="propertype"',
+            'name="description" content="user test page description"'
+        ]);
+        
+        loadCss(['user/test.css', 'b.css']);
+        loadJs(['a.js', 'b.js']);
+        return view('test'); // someview in default_template
+    }
 
     public function login()
     {
@@ -32,7 +61,7 @@ class User extends BaseController
                 }
             }
         }
-
+        return view('user/login');
         echo view('layout/header', ['title' => 'Login'])
             . view('user/login')
             . view('layout/footer');
@@ -69,6 +98,7 @@ class User extends BaseController
             }
         }
 
+        return view('user/sigup', $data);
         echo view('layout/header', ['title' => 'Signup'])
             . view('user/sigup', $data)
             . view('layout/footer');

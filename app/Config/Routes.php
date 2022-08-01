@@ -51,6 +51,8 @@ $routes->match(['get', 'post'], 'login', 'User::login');
 $routes->get('stocks/(:segment)', 'Stocks::view/$1');
 $routes->get('logout', 'User::logout');
 
+$routes->get('test', 'User::test');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -95,6 +95,10 @@ class View implements RendererInterface
      *
      * @var bool
      */
+
+    protected $view_template = 'default_template';
+    protected $aCss = [];
+    protected $aJs = [];
     protected $saveData;
 
     /**
@@ -163,6 +167,68 @@ class View implements RendererInterface
      *                             if false, cleans the data after displaying,
      *                             if null, uses the config setting.
      */
+
+     public function useTemplate($template_name) {
+        $this->view_template = $template_name;
+     }
+
+     public function setCss($aCss) {
+        $this->aCss = $aCss;
+     }
+
+     public function setJs($aJs) {
+        $this->aJs = $aJs;
+     }
+
+    public function getPageContent(?string $data = null){
+        helper('html');
+        $view_template = $this->view_template;
+
+        $fileExt                     = pathinfo($view_template, PATHINFO_EXTENSION);
+        $realPath                    = empty($fileExt) ? $view_template . '.php' : $view_template; // allow Views as .html, .tpl, etc (from CI3)
+        $this->renderVars['view']    = $realPath;
+        $this->renderVars['options'] = $options ?? [];
+
+        $this->renderVars['file'] = $this->viewPath .'templates/' . $this->renderVars['view'];
+        $GLOBALS['sCss'] = '';
+        $GLOBALS['sJs']  = '';
+        // die(var_dump($this->renderVars['file']));
+        if($this->aCss) { // require css & js to file
+            // die(var_dump($this->cssJs));
+            foreach($this->aCss as $css) {
+                $GLOBALS['sCss'] .= link_tag('assets/css/'.$css);
+            }
+        }
+
+        if($this->aJs) { // require css & js to file
+            // die(var_dump($this->cssJs));
+            foreach($this->aJs as $js) {
+                $GLOBALS['sJs'] .= script_tag('assets/js/'.$js);
+            }
+        }
+        $GLOBALS['tmp_data'] = $data;
+        $output = (function (): string {
+            // extract($this->tempData);
+            ob_start();
+            include $this->renderVars['file'];
+
+            return ob_get_clean() ?: '';
+        })();
+        unset($GLOBALS['tmp_data']);
+        unset($GLOBALS['sCss']);
+        unset($GLOBALS['sJs']);
+        unset($GLOBALS['title']);
+        unset($GLOBALS['meta']);
+        // $router = \Config\Services::router();
+        // $_method = $router->methodName();
+        // $_controller = $router->controllerName();
+        // die(var_dump($_controller));
+        return $output;
+    }
+
+
+
+
     public function render(string $view, ?array $options = null, ?bool $saveData = null): string
     {
         $this->renderVars['start'] = microtime(true);
@@ -192,7 +258,7 @@ class View implements RendererInterface
 
         $this->renderVars['file'] = $this->viewPath . $this->renderVars['view'];
 
-        if (! is_file($this->renderVars['file'])) {
+        if (!is_file($this->renderVars['file'])) {
             $this->renderVars['file'] = $this->loader->locateFile($this->renderVars['view'], 'Views', empty($fileExt) ? 'php' : $fileExt);
         }
 
@@ -215,6 +281,7 @@ class View implements RendererInterface
             return ob_get_clean() ?: '';
         })();
 
+
         // Get back current vars
         $this->renderVars = $renderVars;
 
@@ -235,7 +302,7 @@ class View implements RendererInterface
 
         $this->logPerformance($this->renderVars['start'], microtime(true), $this->renderVars['view']);
 
-        if (($this->debug && (! isset($options['debug']) || $options['debug'] === true))
+        if (($this->debug && (!isset($options['debug']) || $options['debug'] === true))
             && in_array(DebugToolbar::class, service('filters')->getFiltersClass()['after'], true)
         ) {
             $toolbarCollectors = config(Toolbar::class)->collectors;
@@ -395,7 +462,7 @@ class View implements RendererInterface
         $section = array_pop($this->sectionStack);
 
         // Ensure an array exists so we can store multiple entries for this.
-        if (! array_key_exists($section, $this->sections)) {
+        if (!array_key_exists($section, $this->sections)) {
             $this->sections[$section] = [];
         }
 
@@ -407,7 +474,7 @@ class View implements RendererInterface
      */
     public function renderSection(string $sectionName)
     {
-        if (! isset($this->sections[$sectionName])) {
+        if (!isset($this->sections[$sectionName])) {
             echo '';
 
             return;

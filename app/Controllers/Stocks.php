@@ -15,7 +15,7 @@ class Stocks extends BaseController
     {
         $model = model(StocksModel::class);
         $all_stocks = $model->findAll();
-
+        return view('stocks/index', ['stocks' => $all_stocks]);
         return view('layout/header', ['title' => 'List Stocks'])
             . view('stocks/index', ['stocks' => $all_stocks])
             . view('layout/footer');
@@ -33,6 +33,8 @@ class Stocks extends BaseController
         }
 
         $exchange = $model->getAllExchanges();
+        return view('stocks/exchange', ['exchange' => $exchange]);
+
         return view('layout/header', ['title' => 'add new exchanges'])
         . view('stocks/exchange', ['exchange' => $exchange])
         . view('layout/footer');
@@ -56,6 +58,9 @@ class Stocks extends BaseController
 
         $model = model(ExchangeModel::class);
         $exchange = $model->getAllExchanges();
+
+        return view('stocks/add', ['exchange' => $exchange]);
+
         return view('layout/header', ['title' => 'add new stocks'])
         . view('stocks/add', ['exchange' => $exchange])
         . view('layout/footer');
@@ -96,6 +101,8 @@ class Stocks extends BaseController
             'stocks' => $stockDataModel->where('stock_name', $slug)->paginate(20),
             'pager' => $stockDataModel->pager,
         ];
+
+        return view('stocks/view', ['data' => $data, 'stockinfo' => $stock, 'c_data' => json_encode($datas)]);
 
         return view('layout/header', ['title' => $slug.' : Dữ liệu giao dịch hàng ngày '])
             . view('stocks/view', ['data' => $data, 'stockinfo' => $stock, 'c_data' => json_encode($datas)])

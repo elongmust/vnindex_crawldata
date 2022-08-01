@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8" />
-      <title>Some Title</title>
-      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/app.css" />
-      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $css; ?>" />
-   </head>
-   <body>
-     <header></header>
-     hihi
-     <section id="container" role="main">
-     <?php return view($yield); ?>
-     </section>
-     <footer></footer>
-     <script src="<php echo base_url(); ?>assets/js/app.js"></script>
-     <script src="<php echo base_url(); ?>assets/js/<?php echo $js; ?>"></script>
-  </body>
+<?= $this->include('layout\header') ?>
+<body class="d-flex flex-column min-vh-100" style="min-height: 100vh;">
+   <?= $this->include('layout\menu-bar') ?>
+   <div id="container-fluid main_container">
+      <div class="row">
+         <div class="col-3">
+            <?= $this->include('layout\left-bar'); ?>
+         </div>
+         <div class="col-9">
+            <!-- <?= $this->renderSection('content') ?> -->
+            <?php 
+            echo $GLOBALS['tmp_data']; ?>
+            content in home page
+         </div>
+      </div>
+   </div>
+   <?= $this->include('layout\footer') ?>
+   <?php if(isset($GLOBALS['sJs'])) echo $GLOBALS['sJs']; ?>
+</body>
+
 </html>

@@ -1,5 +1,3 @@
-<h2><?= esc($title) ?></h2>
-
 <?= session()->getFlashdata('error') ?>
 <?= service('validation')->listErrors() ?>
 
