@@ -52,7 +52,7 @@ class StocksDataModel extends Model {
                 $tmp_date = getStockValueFromDivString($element->childNodes(0)->__toString());
                 $tmp = explode('/', $tmp_date);
                 $timestamp = $tmp[2] . '-' . $tmp[1] . '-' . $tmp[0];
-                $ck_date =  date("Y-m-d H:i:s", strtotime($timestamp));
+                $ck_date =  date("Y-m-d", strtotime($timestamp));
                 if ($exchange_name == 'UPCOM') {
                     $insert_data = [
                         'stock_name' => $stock_name,

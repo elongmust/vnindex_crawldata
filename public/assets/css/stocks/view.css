@@ -1,0 +1,89 @@
+#loading {
+    text-align: center;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #ececec;
+    line-height: 100%;
+    display: none;
+}
+
+.dulieu {
+    padding: 0 15px 0 0px;
+}
+.dl-title {
+    color: #343434;
+    font-weight: bold;
+    font-size: 17px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding: 10px 0 5px 100px;
+}
+#namebox h1 {
+    font-size: 16px;
+}
+.cattitle {
+    color: #555;
+    font: bold 12px Tahoma,Geneva,sans-serif;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 0 5px;
+    margin: 8px 0 8px 0;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+.dl-title {
+    padding: 8px 0 0px 12px;
+}
+
+#symbolbox {
+    float: left;
+    border: 1px solid #EEE;
+    padding: 5px 15px 5px 15px;
+    border-bottom: none;
+}
+#namebox {
+    float: left;
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.avartar {
+    float: left;
+}
+
+.avartar img {
+    width: 100px;
+    margin: 5px 10px;
+}
+
+.companyIntro {
+    font-weight: normal;
+    font-family: Arial;
+    font-size: 13px;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+.dlt-left {
+    border-right: none;
+    width: 204px;
+    float: left;
+}
+
+.dlt-right {
+    float: right;
+    font-size: 11px;
+}
+
+.txt_dt {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.st_log {
+    margin-bottom: 12px;
+    line-height: 50px;
+}

@@ -19,11 +19,7 @@ class Home extends BaseController
         // $data['css']         = 'dashboards.css';
         // $data['yield'] = 'welcome_message';
         // return view('default_template', $data);
-        
+        setTitle('Home Page');
         return view('index');
-        
-        echo view('layout/header', ['title' => 'Dash Board'])
-            . view('index')
-            . view('layout/footer');
     }
 }

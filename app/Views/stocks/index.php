@@ -1,11 +1,9 @@
-
-
-<h2>List available Stocks: </h2>
+<h2>Danh sách các mã CP:</h2>
 <?php if (!empty($stocks) && is_array($stocks)): ?>
     <ul>
         <?php foreach($stocks as $stock) : ?>
             <li>
-                <a href="/stocks/<?= esc($stock['name']) ?>"><?= esc($stock['name']) ?></a> <a href="/crawl/<?= esc($stock['name']) ?>">Crawl Data</a>
+                <a href="/stocks/<?= esc($stock['name']) ?>"><?= esc($stock['name']) ?></a>
         </li>
         <?php endforeach ?>
 </ul>

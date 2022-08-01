@@ -2,9 +2,13 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+$tmp_date = '01/08/2022';
+$tmp = explode('/', $tmp_date);
+$timestamp = $tmp[2] . '-' . $tmp[1] . '-' . $tmp[0];
+$ck_date =  date("Y-m-d", strtotime($timestamp));
 
-header("HTTP/1.0 404 Not Found");
 
+die(var_dump($ck_date));
 function myTest() {
 static $x = 0;
 echo $x;

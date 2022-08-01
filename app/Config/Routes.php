@@ -41,7 +41,7 @@ $routes->get('stocks', 'Stocks::index');
 
 $routes->match(['get', 'post'], 'stocks/add', 'Stocks::add');
 $routes->match(['get', 'post'], 'stocks/exchange', 'Stocks::exchange');
-$routes->match(['get', 'post'], 'crawl/(:segment)', 'Stocks::crawl/$1');
+$routes->match(['get', 'post'], 'crawl', 'Stocks::crawl');
 
 $routes->match(['get', 'post'], 'signup', 'User::signup');
 $routes->match(['get', 'post'], 'login', 'User::login');
