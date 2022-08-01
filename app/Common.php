@@ -31,7 +31,7 @@ if (!function_exists('page')) {
             unset($options['saveData']);
         }
 
-        $data_content =  $renderer->setData($data, 'raw')->render($name, $options, $saveData);
+        $data_content =  $renderer->setData($data, 'raw')->render($name, $options, $saveData); // js will loading 2 times
         $page_contents = $renderer->getPageContent($data_content);
         return $page_contents;
     }

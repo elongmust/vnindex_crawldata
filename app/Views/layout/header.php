@@ -9,7 +9,6 @@
   <script type="text/javascript" src="<?php echo base_url('bootstrap/js/bootstrap.js') ?>"></script>
 <?php 
     if(isset($GLOBALS['sCss'])) echo $GLOBALS['sCss'];
-    if(isset($GLOBALS['sJs'])) echo $GLOBALS['sJs']; 
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
