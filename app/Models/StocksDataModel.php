@@ -3,17 +3,22 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+
 require_once('simple_html_dom.php');
 require_once('function.php');
+
 use simple_dom\simple_html_dom;
 
 
-class StocksDataModel extends Model {
-    protected $table = 'stocks_data';
+class StocksDataModel extends Model
+{
+    protected $table = 'vn_stocks_data';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['stock_name','date','gia_dieu_chinh', 'gia_dong_cua',
-     'gia_binh_quan', 'thay_doi', 'khoi_luong_gd', 'gia_tri_gd',
-    'khoi_luong_tt', 'gia_tri_tt', 'gia_tham_chieu', 'gia_mo_cua', 'gia_cao_nhat', 'gia_thap_nhat'];
+    protected $allowedFields = [
+        'stock_name', 'date', 'gia_dieu_chinh', 'gia_dong_cua',
+        'gia_binh_quan', 'thay_doi', 'khoi_luong_gd', 'gia_tri_gd',
+        'khoi_luong_tt', 'gia_tri_tt', 'gia_tham_chieu', 'gia_mo_cua', 'gia_cao_nhat', 'gia_thap_nhat'
+    ];
 
     public function crawlStockData($stock_name, $exchange_name = 'HOSE')
     {
@@ -105,8 +110,8 @@ class StocksDataModel extends Model {
                         'gia_thap_nhat' => getStockValueFromDivString($element->childNodes(11)->__toString()),
                     ];
                 }
-                
-            // $stockDataModel = model(StocksDataModel::class);
+
+                // $stockDataModel = model(StocksDataModel::class);
                 $this->save($insert_data);
 
                 if (isset($ck_date)) { // update last crawl 
@@ -122,4 +127,18 @@ class StocksDataModel extends Model {
         // return $data;
     }
 
+    public function getJson15dayData($stock_name, $exchange_name)
+    {
+
+        $key = 'gia_tham_chieu';
+        if ($exchange_name == 'HOSE') {
+            $key = 'gia_mo_cua';
+        }
+
+        $data = $this->select('date as time, ' . $key . ' as value')
+            ->where('stock_name', $stock_name)
+            ->orderBy('date', 'desc')
+            ->findAll(15);
+        return json_encode($data);
+    }
 }

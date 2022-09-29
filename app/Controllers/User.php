@@ -10,7 +10,9 @@ class User extends BaseController
 
     public function test()
     {
-
+        // session()->set(['item' => 'value']);
+        // session()->markAsFlashdata('item');  // dung 1 lan duy nhat
+        // vdd(session()->get('item'));
         $data = [
             'blog_title'   => 'My Blog Title',
             'blog_heading' => 'My Blog Heading',
@@ -33,9 +35,9 @@ class User extends BaseController
             'name="description" content="user test page description"'
         ]);
         
-        loadCss(['user/test.css', 'b.css']);
-        loadJs(['a.js', 'b.js']);
-        return view('test'); // someview in default_template
+        // loadCss(['user/test.css', 'b.css']);
+        // loadJs(['a.js', 'b.js']);
+        return view('user/test'); // someview in default_template
     }
 
     public function login()
@@ -61,10 +63,8 @@ class User extends BaseController
                 }
             }
         }
+        setTitle('Login');
         return view('user/login');
-        echo view('layout/header', ['title' => 'Login'])
-            . view('user/login')
-            . view('layout/footer');
     }
 
     public function signup()
@@ -97,11 +97,8 @@ class User extends BaseController
                 return redirect()->to('/login');
             }
         }
-
+        setTitle('Sigup in site');
         return view('user/sigup', $data);
-        echo view('layout/header', ['title' => 'Signup'])
-            . view('user/sigup', $data)
-            . view('layout/footer');
     }
 
     public function logout()

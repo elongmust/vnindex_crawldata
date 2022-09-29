@@ -5,28 +5,24 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <?php if (!empty($data['stocks']) && is_array($data['stocks'])) : ?>
+            <?php if (!empty($indexs) && is_array($indexs)) : ?>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Mã CP</th>
                             <th scope="col">Giá điều chỉnh</th>
-                            <th scope="col">Biểu đồ 7 ngày</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data['stocks'] as $stock) : ?>
+                        <?php foreach ($indexs as $idx) : ?>
                             <tr>
-                                <th scope="row"><a href="/stocks/<?= esc($stock['name']) ?>"><?= esc($stock['name']) ?></a></th>
+                                <th scope="row"><a href="/indexs/<?= esc($idx['name']) ?>"><?= esc($idx['title']) ?></a></th>
                                 <td> xxx </td>
-                                <td>
-                                    <div class="char_" id="char_<?= esc($stock['name']) ?>" chart_data='<?= $stock['15day_char_data'] ?>' ></div>
-                                </td>
+                               
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <?= $data['pager']->links() ?>
                 <?php else : ?>
                     <h4>No Stocks</h4>
                 <?php endif ?>

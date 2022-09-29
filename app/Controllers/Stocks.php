@@ -14,13 +14,15 @@ class Stocks extends BaseController
     public function index()
     {
         $model = model(StocksModel::class);
-        $all_stocks = $model->findAll();
+        $all_stocks = $model->getStockandData();
        
         setBreadcrumb([
             'stocks' => 'Stocks'
         ]);
         loadCss(['stocks/index.css']);
-        return view('stocks/index', ['stocks' => $all_stocks]);
+        loadJs(['stocks/index.js']);
+
+        return view('stocks/index', ['data' => $all_stocks]);
     }
 
     public function exchange()

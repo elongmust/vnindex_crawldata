@@ -12,12 +12,15 @@ $uri = service('uri');
       <li class="nav-item active">
         <a class="nav-link" href="/stocks"><i class="fas fa-chart-line"></i> Stocks <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/indexs"><i class="fas fa-chart-bar"></i> World Indexs </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/cryptocurrency"><i class="fab fa-btc"></i> Cryptocurrency</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/news"><i class="fas fa-newspaper"></i> Newss</a>
+        <a class="nav-link" href="/news"><i class="fas fa-newspaper"></i> News</a>
       </li>
 
       

@@ -38,9 +38,13 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 $routes->get('stocks', 'Stocks::index');
+$routes->get('indexs', 'Indexs::index');
 
 $routes->match(['get', 'post'], 'stocks/add', 'Stocks::add');
 $routes->match(['get', 'post'], 'stocks/exchange', 'Stocks::exchange');
+$routes->match(['get', 'post'], 'indexs/add', 'Indexs::add');
+
+$routes->match(['get', 'post'], 'idx-crawl', 'Indexs::crawl');
 $routes->match(['get', 'post'], 'crawl', 'Stocks::crawl');
 
 $routes->match(['get', 'post'], 'signup', 'User::signup');
@@ -52,6 +56,8 @@ $routes->match(['get', 'post'], '404', 'Home::eror404');
 // $routes->get('stocks/exchange', 'Stocks::exchange');
 // $routes->get('stocks/add', 'Stocks::add');
 $routes->get('stocks/(:segment)', 'Stocks::view/$1');
+$routes->get('indexs/(:segment)', 'Indexs::view/$1');
+
 $routes->get('logout', 'User::logout');
 
 $routes->get('test', 'User::test');

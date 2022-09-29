@@ -15,7 +15,7 @@ class StocksModel extends Model
 {
     
 
-    protected $table = 'stocks';
+    protected $table = 'vn_stocks';
     // protected $primaryKey = 'name';
     protected $allowedFields = ['name', 'exchange_name', 'full_stock_name', 'exchange_name', 'stock_desc', 'log_bonus', 'last_crawl', 'logo_img_path'];
 
@@ -47,5 +47,22 @@ class StocksModel extends Model
         ];
 
         $this->save($update_data);
+    }
+
+    public function getStockandData(){
+        $aStocks = $this->paginate(10);
+        $pager = $this->pager;
+        $stockdatamodel = model(StocksDataModel::class);
+        foreach($aStocks as $key => $aStock) {
+            $aStocks[$key]['15day_char_data'] = $stockdatamodel->getJson15dayData($aStock['name'], $aStock['exchange_name']);
+        }
+
+        $data = [
+            'stocks' => $aStocks,
+            'pager' => $pager
+        ];
+
+        return $data;
+        
     }
 }

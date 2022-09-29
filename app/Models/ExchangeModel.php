@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ExchangeModel extends Model {
 
-    protected $table = 'exchanges';
+    protected $table = 'vn_exchanges';
     // protected $primaryKey = 'name';
     protected $allowedFields = ['name'];
 
